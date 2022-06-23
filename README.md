@@ -1,5 +1,5 @@
 # tic-tac-toe
-2 player tic tac toe implemented in Ruby
+2 player tic tac toe implemented using Objects and Classes in Ruby
 
 
 Algorithm:
