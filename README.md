@@ -24,5 +24,3 @@ Game Class contains:
 method to check for winner
 changing of board?
 
-Player contains
-method of 
