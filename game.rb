@@ -1,51 +1,72 @@
 require_relative "board"
 require_relative "player"
 
+
 class Game
-    attr_reader :board, :player1,  :player2, :player1_moves, :player2_moves, :play
+    attr_reader :board, :player1,  :player2, :player1_moves, :player2_moves, :play, :turn, :letter
+    attr_writer :turn, :letter
 
     def initialize
         @player1 = Player.new
         @player2 = Player.new
         @board = Board.new
         @turn = 1
-
+        @letter = "X"
     end
 
-    
+    def instruction
+        board.instruction_display
+    end
+
+
+
+    # Game loop
     def play 
-        
-        
-        #while 
-        if turn % 0 == 1
+        self.instruction()
+        round_turns = 0
+        while round_turns < 9 || winner_check
+        if self.turn % 2 == 1
             self.make_move(player1)
+            self.letter = "X"
+            round_turns += 1
         else
             self.make_move(player2)
+            self.letter = "O"
+            round_turns += 1
+        end
+
+        puts "It's a tie!!"
+    end
+end
 
 
-    # def accessing_player
-    #     self.player1.name
+
+
+    
+
+
+    # private 
+    # def winner_check
+    #     winning_combinations = [123,146,258,369]
 
 
     # end
 
-    def instruction
-        puts "The grid is ordered in this way"
-        puts board.start_display
-    end
-
-
     private
     def make_move(player)
+        # asks for player to make a move
         puts "#{player.name} make a move!"
+        # loops until move is viable
         while true
-            move = gets.chomp
-            if check_move(move)
+            # gets move from player
+            move = gets.chomp.to_i
+            if check_move_from_other_player(move)
+                puts "#{move} is taken! Please enter another move!"
                 next
             else
-                board.update_board(move)
+                board.update_board(move,letter)
                 player.choices << move
-                turn += 1
+                self.turn += 1
                 break
             end
         end
@@ -54,29 +75,18 @@ class Game
         
 
         
-    end
-    
-    def check_move(move)
+
+
+    # Checks other player's move array.
+    def check_move_from_other_player(move)
         if turn % 2 == 1
-            @player2.choices.include(move)
-
+            @player2.choices.include?(move)
         else
-            @player1.choices.include(move)
-        @player.choices.include
+            @player1.choices.include?(move)
+        end
 
     end
-
-    # def check_other_player_array()
-
-
-
-    # end
-
-
-        
-
 end
 
-game = Game.new
-# game.board.display_board
-game.player1.accessing_player
+
+

@@ -5,10 +5,12 @@ require_relative "game"
 
 #starting game
 game = Game.new
+game.play
 while true
     puts "Did you want to play another?"
     answer = gets.chomp
     if answer.downcase == "no"|| answer.downcase == "n"
+        puts "Game Over!"
         break
     else
         game = Game.new

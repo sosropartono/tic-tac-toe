@@ -1,19 +1,21 @@
 class Board
 
-    attr_writer :game_array
+    attr_accessor :game_array
     def initialize
         @game_array = Array.new(9, "_")
     end
 
-    def start_display
+    def instruction_display
+        puts "The grid is ordered in this way"
         puts "| 1 2 3 |"
         puts "| 4 5 6 |"
         puts "| 7 8 9 |"
     end
 
 
-    def update_board(move)
-        self.game_array = move
+    def update_board(move, letter)
+        move = move -1
+        @game_array[move] = letter
         display_board
     end
 

@@ -5,7 +5,7 @@ class Player
     def initialize
         puts "Please enter a name for Player #{@@player_count}"
         @name = gets.chomp
-        @choices = []
+        @choices = [1,2,3]
         @@player_count += 1
     end
 
