@@ -42,7 +42,6 @@ class Game
   # Checks for Winner
   def winner_check(player)
     string = player.choices.sort.join
-    p "this is a string #{string}"
     winning_combinations = %w[123 456 789 147 258 369 159 357]
     winning_combinations.each do |element|
       if string.include?(element)
